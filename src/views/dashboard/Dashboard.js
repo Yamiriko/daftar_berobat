@@ -20,8 +20,20 @@ const Dashboard = () => {
   function TampilMenu() {
     return (
       <>
-        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/data_registrasi_pasien_rawat_jalan')}>
-          <FontAwesomeIcon icon={faUser} /> Registrasi Pasien Rawat Jalan
+        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/pengguna')}>
+          <FontAwesomeIcon icon={faUser} /> Pengguna
+        </CButton>
+
+        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/staff')}>
+          <FontAwesomeIcon icon={faUser} /> Staff
+        </CButton>
+
+        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/pasien')}>
+          <FontAwesomeIcon icon={faUser} /> Pasien
+        </CButton>
+
+        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/berobat')}>
+          <FontAwesomeIcon icon={faUser} /> Berobat
         </CButton>
       </>
     )

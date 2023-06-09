@@ -22,8 +22,26 @@ _nav = [
   },
   {
     component: CNavItem,
-    name: 'Reg Pasien Rwt Jalan',
-    to: '/data_registrasi_pasien_rawat_jalan',
+    name: 'Pengguna',
+    to: '/pengguna',
+    icon: <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', marginRight: '15px' }} />,
+  },
+  {
+    component: CNavItem,
+    name: 'Staff',
+    to: '/staff',
+    icon: <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', marginRight: '15px' }} />,
+  },
+  {
+    component: CNavItem,
+    name: 'Pasien',
+    to: '/pasien',
+    icon: <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', marginRight: '15px' }} />,
+  },
+  {
+    component: CNavItem,
+    name: 'Berobat',
+    to: '/berobat',
     icon: <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', marginRight: '15px' }} />,
   },
 ]

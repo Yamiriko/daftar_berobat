@@ -8,14 +8,27 @@ const $ = require('jquery')
 
 // eslint-disable-next-line no-restricted-globals
 // var serverGlobal = 'http://' + location.hostname + ':81'
-var serverGlobal = 'http://localhost:81/api/'
+var serverGlobal = 'http://localhost:81/api'
 var kontentipe = 'application/x-www-form-urlencoded; charset=UTF-8'
-var linkLogin = serverGlobal + '/login'
-var linkBerobat = serverGlobal + '/berobat'
-var linkPasien = serverGlobal + '/pasien'
-var linkPengguna = serverGlobal + '/pengguna'
-var linkSkrining = serverGlobal + '/skrining'
-var linkStaff = serverGlobal + '/staff'
+var linkLogin = serverGlobal + '/login_pengguna'
+
+//Berobat
+var linkBerobat = serverGlobal + '/tampil_berobat'
+
+//Pasien
+var linkPasien = serverGlobal + '/tampil_pasien'
+
+//Pengguna
+var linkPengguna = serverGlobal + '/tampil_pengguna'
+var linkAddPengguna = serverGlobal + '/tambah_pengguna'
+var linkEditPengguna = serverGlobal + '/ubah_pengguna'
+var linkDelPengguna = serverGlobal + '/hapus_pengguna'
+
+//Skrinning
+var linkSkrining = serverGlobal + '/tampil_skrining'
+
+//Staff
+var linkStaff = serverGlobal + '/tampil_staff'
 
 function loading_swal() {
   let span = document.createElement('span')
@@ -29,11 +42,6 @@ function loading_swal() {
     closeOnEsc: false,
     buttons: false,
   })
-}
-
-function psw_rm(str) {
-  return Base64.encode(sha512.sha512(str))
-  // return sha512.sha512(str)
 }
 
 var cari_data = function (nama_tabel, nama_field, kondisi) {
@@ -354,22 +362,20 @@ function logout() {
 
 function loadSession() {
   const data = {
-    pengguna: sessionStorage.getItem('usr_dokter'),
-    password: sessionStorage.getItem('psw_dokter'),
-    kode_dokter: sessionStorage.getItem('kode_dokter'),
+    namapengguna: sessionStorage.getItem('namapengguna'),
+    sandipengguna: sessionStorage.getItem('sandipengguna'),
   }
   return data
 }
 
 function saveSession(datanya) {
-  sessionStorage.setItem('usr_dokter', datanya.usr_dokter)
-  sessionStorage.setItem('psw_dokter', datanya.psw_dokter)
-  sessionStorage.setItem('kode_dokter', datanya.kode_dokter)
+  sessionStorage.setItem('namapengguna', datanya.namapengguna)
+  sessionStorage.setItem('sandipengguna', datanya.sandipengguna)
 }
 
 function statusLogin() {
-  let pengguna = loadSession().pengguna
-  let psw = loadSession().password
+  let pengguna = loadSession().namapengguna
+  let psw = loadSession().sandipengguna
   if (!pengguna && !psw) {
     return false
   } else {
@@ -519,6 +525,9 @@ module.exports = {
   linkBerobat: linkBerobat,
   linkPasien: linkPasien,
   linkPengguna: linkPengguna,
+  linkAddPengguna: linkAddPengguna,
+  linkEditPengguna: linkEditPengguna,
+  linkDelPengguna: linkDelPengguna,
   linkSkrining: linkSkrining,
   linkStaff: linkStaff,
   loadingSwal: function () {
@@ -602,9 +611,6 @@ module.exports = {
   },
   statusLogin: function () {
     return statusLogin()
-  },
-  pswRm: function (str) {
-    return psw_rm(str)
   },
   disableF12: function () {
     return disableF12()

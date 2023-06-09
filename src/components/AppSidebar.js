@@ -9,7 +9,7 @@ import {
   CSidebarToggler 
 } from '@coreui/react'
 import { AppSidebarNav } from './AppSidebarNav'
-import logoBM from 'src/assets/images/LOGO_RSIA.jpg'
+import logo from 'src/assets/images/satu2.png'
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
 
@@ -32,8 +32,20 @@ const AppSidebar = () => {
         }}
       >
         <CSidebarBrand className="d-none d-md-flex" to="/">
-          <CImage alt="" rounded thumbnail className="sidebar-brand-full" src={logoBM} />
-          <CImage alt="" rounded thumbnail className="sidebar-brand-narrow" src={logoBM} />
+          <CImage alt="" 
+            rounded 
+            thumbnail 
+            className="sidebar-brand-full" 
+            src={logo} 
+            width={80}
+          />
+          <CImage alt="" 
+            rounded 
+            thumbnail 
+            className="sidebar-brand-narrow" 
+            src={logo} 
+            width={50}
+          />
         </CSidebarBrand>
         <CSidebarNav>
           <SimpleBar>

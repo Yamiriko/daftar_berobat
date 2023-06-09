@@ -20,12 +20,13 @@ import $ from 'jquery'
 import AWN from 'awesome-notifications'
 import 'awesome-notifications/src/styles/style.scss'
 import swal from 'sweetalert'
-import Fungsi from 'src/fungsi/Fungsi'
+import Fungsi, { loadingSwal } from 'src/fungsi/Fungsi'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNodeJs } from '@fortawesome/free-brands-svg-icons'
 import { faEye } from '@fortawesome/free-regular-svg-icons'
 import { faEyeSlash } from '@fortawesome/free-regular-svg-icons'
 import logo from 'src/assets/images/satu2.png'
+import Token from 'src/fungsi/Token'
 
 const Login = () => {
   Fungsi.disableF12()
@@ -53,9 +54,9 @@ const Login = () => {
       notifier.alert('Pesan System : Password Wajib Diisi !')
       $('#psw').focus()
     } else {
-      let fd = '&act=riko_login'
-      fd += '&usr=' + Fungsi.base64Decode(Fungsi.keyUsr)
-      fd += '&psw=' + Fungsi.hash512(Fungsi.base64Decode(Fungsi.keyPsw))
+      let fd = '&token=' + Token.TokenRahasia()
+      fd += '&namapengguna=' + usr.trim()
+      fd += '&sandipengguna=' + psw.trim()
       const optionku = {
         method: 'POST',
         mode: 'cors',
@@ -65,73 +66,28 @@ const Login = () => {
         body: fd,
       }
       fetch(Fungsi.linkLogin, optionku)
-        .then((response) => response.json())
+        .then((response) => response.json(),loadingSwal())
         .then((data_json) => {
-          if (data_json.status) {
-            let obj = data_json.data
+          swal.close()
+          let status = data_json.status_tampil
+          let pesan = data_json.pesan
+          if (status) {            
             // console.clear()
-            if (obj.status === 'Aktif') {
-              let fd = 'act=login'
-              fd += '&usr_dokter=' + usr
-              fd += '&psw_dokter=' + Fungsi.base64Encode(psw)
-              const optionku = {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                  'Content-Type': Fungsi.kontentipe,
-                },
-                body: fd,
-              }
-
-              fetch(Fungsi.linkLogin, optionku)
-                .then((response) => response.json(), Fungsi.loadingSwal())
-                .then((data_json) => {
-                  swal.close()
-                  let obj = data_json.data
-                  let metadata = data_json.metadata
-                  if (metadata.status) {
-                    notifier.success('Pesan System : ' + metadata.message)
-                    const d_ses = {
-                      usr_dokter: usr,
-                      psw_dokter: Fungsi.base64Encode(psw),
-                      kode_dokter: Fungsi.base64Encode(obj.kode_dokter),
-                    }
-                    Fungsi.saveSession(d_ses)
-                    setTimeout(() => {
-                      Fungsi.BukaLink('/')
-                    }, 4000)
-                  } else {
-                    notifier.warning('Pesan System : ' + metadata.message)
-                  }
-                })
-                .catch((error) => {
-                  swal.close()
-                  notifier.alert('Pesan Error System : ' + error)
-                })
-            } else if (obj.status === 'Suspend') {
-              sessionStorage.clear()
-              notifier.alert('Pesan Error System : Website Ini Ditangguhkan')
-              setTimeout(() => {
-                Fungsi.BukaLink('/#/suspend')
-              }, 3000);
-            } else if (obj.status === 'Maintenance') {
-              sessionStorage.clear()
-              notifier.alert('Pesan Error System : Website Ini Sedang Perbaikan')
-              setTimeout(() => {
-                Fungsi.BukaLink('/#/mt')
-              }, 3000);
-            } else if (obj.status === 'Konstruksi') {
-              sessionStorage.clear()
-              notifier.alert('Pesan Error System : Website Ini Sedang Dalam Konstruksi')
-              setTimeout(() => {
-                Fungsi.BukaLink('/#/konstruksi')
-              }, 3000);
+            notifier.success('Pesan System : ' + pesan)
+            const d_ses = {
+              namapengguna: usr.trim(),
+              sandipengguna: psw.trim(),
             }
+            Fungsi.saveSession(d_ses)
+            setTimeout(() => {
+              Fungsi.BukaLink('/')
+            }, 4000)
           } else {
-            console.log('Pesan System : ' + data_json.pesan)
+            console.log('Pesan System : ' + pesan)
           }
         })
         .catch((error) => {
+          swal.close()
           console.log('Pesan Error System : ' + error)
         })
     }
@@ -171,10 +127,6 @@ const Login = () => {
                         title="Input username kamu disini"
                         autoComplete="off"
                         maxLength={50}
-                        onInput={()=> {
-                          Fungsi.huruf_besar('usr');
-                          $("#psw").val($("#usr").val()).change();
-                        }}
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">

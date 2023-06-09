@@ -1,14 +1,18 @@
 /* eslint-disable prettier/prettier */
-function satpamApi() {
-  const a = {
-    usr : 'YXBpLnJzaWFidWRoaW11bGlhLmNvbQ',
-    psw: 'SmVhblJpa29CTTIwMjM',
+class Token {
+  constructor(isiToken){
+    this.isiToken = isiToken;
   }
-  return a;
+  
+  TokenRahasia(){
+    let a = 'RekayasaPerangkatLunak';
+    return a;
+  }
 }
 
 module.exports = {
-  satpamApi : function () {
-    return satpamApi();
+  TokenRahasia: function(){
+    const objtkn = new Token('');
+    return objtkn.TokenRahasia();
   }
 };

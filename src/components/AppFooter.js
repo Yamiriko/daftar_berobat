@@ -9,7 +9,7 @@ const AppFooter = () => {
     <CFooter>
       <div className="ms-auto">
         <span className="ms-1">
-          <FontAwesomeIcon icon={faCopyright} /> 2023 IT RSIA Budhi Mulia.
+          <FontAwesomeIcon icon={faCopyright} /> 2023 Jean Riko Kurniawan Putra, S.Kom , M.Kom.
         </span>
       </div>
       {/* <div className="ms-auto">

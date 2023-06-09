@@ -59,24 +59,26 @@ const Pasien = () => {
     let namapasien = $('#namapasien').val()
     let jeniskelamin = $('#jeniskelamin').val()
     let tgllahir = $('#tgllahir').val()
+    let alamat = $('#alamat').val()
+    let nohp = $('#nohp').val()
     if (!nomr) {
       //notif masih kurang
-      notifier.alert('Pesan System : Nama Pengguna Tidak Boleh Kosong.')
+      notifier.alert('Pesan System : Nomor Medical Record Tidak Boleh Kosong.')
       $('#nomr').focus()
     }
     else if (!namapasien) {
       //notif masih kurang
-      notifier.alert('Pesan System : Sandi Pengguna Tidak Boleh Kosong.')
+      notifier.alert('Pesan System : Nama Pasien Tidak Boleh Kosong.')
       $('#namapasien').focus()
     }
     else if (!jeniskelamin) {
       //notif masih kurang
-      notifier.alert('Pesan System : Level Akses Belum Dipilih.')
+      notifier.alert('Pesan System : Jenis Kelamin Belum Dipilih.')
       $('#jeniskelamin').focus()
     }
     else if (!tgllahir) {
       //notif masih kurang
-      notifier.alert('Pesan System : Status Akun Belum Dipilih.')
+      notifier.alert('Pesan System : Tanggal Lahir Belum Dipilih.')
       $('#tgllahir').focus()
     }
     else {
@@ -86,6 +88,8 @@ const Pasien = () => {
       fd += '&namapasien=' + namapasien.trim()
       fd += '&jeniskelamin=' + jeniskelamin
       fd += '&tgllahir=' + tgllahir
+      fd += '&alamat=' + alamat
+      fd += '&nohp=' + nohp
       const optionku = {
         method: 'POST',
         mode: 'cors',
@@ -95,7 +99,7 @@ const Pasien = () => {
         body: fd,
       }
 
-      fetch(Fungsi.linkAddPengguna, optionku)
+      fetch(Fungsi.linkAddPasien, optionku)
         .then((response) => response.json(), Fungsi.loadingSwal())
         .then((data_json) => {
           swal.close()
@@ -104,6 +108,7 @@ const Pasien = () => {
           if (status) {
             notifier.success('Pesan System : ' + pesan)
             tampilData()
+            resetForm()
           } else {
             notifier.warning('Pesan System : ' + pesan)
           }
@@ -120,24 +125,26 @@ const Pasien = () => {
     let namapasien = $('#namapasien').val()
     let jeniskelamin = $('#jeniskelamin').val()
     let tgllahir = $('#tgllahir').val()
+    let alamat = $('#alamat').val()
+    let nohp = $('#nohp').val()
     if (!nomr) {
       //notif masih kurang
-      notifier.alert('Pesan System : Nama Pengguna Tidak Boleh Kosong.')
+      notifier.alert('Pesan System : Nomor Medical Record Tidak Boleh Kosong.')
       $('#nomr').focus()
     }
     else if (!namapasien) {
       //notif masih kurang
-      notifier.alert('Pesan System : Sandi Pengguna Tidak Boleh Kosong.')
+      notifier.alert('Pesan System : Nama Pasien Tidak Boleh Kosong.')
       $('#namapasien').focus()
     }
     else if (!jeniskelamin) {
       //notif masih kurang
-      notifier.alert('Pesan System : Level Akses Belum Dipilih.')
+      notifier.alert('Pesan System : Jenis Kelamin Belum Dipilih.')
       $('#jeniskelamin').focus()
     }
     else if (!tgllahir) {
       //notif masih kurang
-      notifier.alert('Pesan System : Status Akun Belum Dipilih.')
+      notifier.alert('Pesan System : Tanggal Lahir Belum Dipilih.')
       $('#tgllahir').focus()
     }
     else {
@@ -147,6 +154,8 @@ const Pasien = () => {
       fd += '&namapasien=' + namapasien.trim()
       fd += '&jeniskelamin=' + jeniskelamin
       fd += '&tgllahir=' + tgllahir
+      fd += '&alamat=' + alamat
+      fd += '&nohp=' + nohp
       const optionku = {
         method: 'POST',
         mode: 'cors',
@@ -156,15 +165,16 @@ const Pasien = () => {
         body: fd,
       }
 
-      fetch(Fungsi.linkEditPengguna, optionku)
+      fetch(Fungsi.linkEditPasien, optionku)
         .then((response) => response.json(), Fungsi.loadingSwal())
         .then((data_json) => {
           swal.close()
-          let status = data_json.status_tambah
+          let status = data_json.status_ubah
           let pesan = data_json.pesan
           if (status) {
             notifier.success('Pesan System : ' + pesan)
             tampilData()
+            resetForm()
           } else {
             notifier.warning('Pesan System : ' + pesan)
           }
@@ -178,7 +188,7 @@ const Pasien = () => {
 
   function hapusData(params) {
     if (!params){
-      notifier.alert('Pesan System : Nama Pengguna masihlah kosong !')
+      notifier.alert('Pesan System : Nomor Medical Record masihlah kosong !')
     }
     else{
       swal({
@@ -212,7 +222,7 @@ const Pasien = () => {
             body: fd,
           }
 
-          fetch(Fungsi.linkDelPengguna, optionku)
+          fetch(Fungsi.linkDelPasien, optionku)
             .then((response) => response.json(), Fungsi.loadingSwal())
             .then((data_json) => {
               swal.close()

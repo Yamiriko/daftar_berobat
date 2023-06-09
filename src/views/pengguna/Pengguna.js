@@ -95,6 +95,7 @@ const Pengguna = () => {
           if (status) {
             notifier.success('Pesan System : ' + pesan)
             tampilData()
+            resetForm()
           } else {
             notifier.warning('Pesan System : ' + pesan)
           }
@@ -151,11 +152,12 @@ const Pengguna = () => {
         .then((response) => response.json(), Fungsi.loadingSwal())
         .then((data_json) => {
           swal.close()
-          let status = data_json.status_tambah
+          let status = data_json.status_ubah
           let pesan = data_json.pesan
           if (status) {
             notifier.success('Pesan System : ' + pesan)
             tampilData()
+            resetForm()
           } else {
             notifier.warning('Pesan System : ' + pesan)
           }

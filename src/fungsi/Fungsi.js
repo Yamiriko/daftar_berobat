@@ -17,6 +17,9 @@ var linkBerobat = serverGlobal + '/tampil_berobat'
 
 //Pasien
 var linkPasien = serverGlobal + '/tampil_pasien'
+var linkAddPasien = serverGlobal + '/tambah_pasien'
+var linkEditPasien = serverGlobal + '/ubah_pasien'
+var linkDelPasien = serverGlobal + '/hapus_pasien'
 
 //Pengguna
 var linkPengguna = serverGlobal + '/tampil_pengguna'
@@ -524,6 +527,9 @@ module.exports = {
   linkLogin: linkLogin,
   linkBerobat: linkBerobat,
   linkPasien: linkPasien,
+  linkAddPasien: linkAddPasien,
+  linkEditPasien: linkEditPasien,
+  linkDelPasien: linkDelPasien,
   linkPengguna: linkPengguna,
   linkAddPengguna: linkAddPengguna,
   linkEditPengguna: linkEditPengguna,

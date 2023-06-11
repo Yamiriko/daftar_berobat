@@ -29,7 +29,7 @@ import Fungsi from 'src/fungsi/Fungsi'
 import swal from 'sweetalert'
 import $ from 'jquery'
 import Token from 'src/fungsi/Token'
-import { faPencil, faPlus, faRecycle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPencil, faPlus, faRecycle, faSync, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const Pengguna = () => {
   const [visible, setVisible] = useState(true)
@@ -133,7 +133,7 @@ const Pengguna = () => {
       $('#status_akun').focus()
     }
     else {
-      //simpan
+      //ubah
       let fd = 'token=' + Token.TokenRahasia()
       fd += '&namapengguna=' + namapengguna.trim()
       fd += '&sandipengguna=' + sandipengguna.trim()
@@ -432,6 +432,18 @@ const Pengguna = () => {
                         </CTableBody>
                       </CTable>
                     </div>
+                  </CCol>
+                  <CCol md={9} className="text-end">
+                    <CButton
+                      id="btn_refresh"
+                      name="btn_refresh"
+                      type="button"
+                      title="Refresh Data ?"
+                      color="cyan"
+                      onClick={() => tampilData()}
+                    >
+                      <FontAwesomeIcon icon={faSync} /> Refresh
+                    </CButton>
                   </CCol>
                 </CRow>
                 <CRow>

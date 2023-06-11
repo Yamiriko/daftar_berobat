@@ -30,7 +30,7 @@ import Fungsi from 'src/fungsi/Fungsi'
 import swal from 'sweetalert'
 import $ from 'jquery'
 import Token from 'src/fungsi/Token'
-import { faPencil, faPlus, faRecycle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPencil, faPlus, faRecycle, faSync, faTrash } from '@fortawesome/free-solid-svg-icons'
 import 'flatpickr/dist/themes/material_green.css'
 import Flatpickr from 'react-flatpickr'
 
@@ -148,7 +148,7 @@ const Pasien = () => {
       $('#tgllahir').focus()
     }
     else {
-      //simpan
+      //ubah
       let fd = 'token=' + Token.TokenRahasia()
       fd += '&nomr=' + nomr.trim()
       fd += '&namapasien=' + namapasien.trim()
@@ -472,6 +472,18 @@ const Pasien = () => {
                         </CTableBody>
                       </CTable>
                     </div>
+                  </CCol>
+                  <CCol md={9} className="text-end">
+                    <CButton
+                      id="btn_refresh"
+                      name="btn_refresh"
+                      type="button"
+                      title="Refresh Data ?"
+                      color="cyan"
+                      onClick={() => tampilData()}
+                    >
+                      <FontAwesomeIcon icon={faSync} /> Refresh
+                    </CButton>
                   </CCol>
                 </CRow>
                 <CRow>

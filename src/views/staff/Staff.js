@@ -29,7 +29,7 @@ import Fungsi from 'src/fungsi/Fungsi'
 import swal from 'sweetalert'
 import $ from 'jquery'
 import Token from 'src/fungsi/Token'
-import { faPencil, faPlus, faRecycle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPencil, faPlus, faRecycle, faSync, faTrash } from '@fortawesome/free-solid-svg-icons'
 import 'flatpickr/dist/themes/material_green.css'
 import Flatpickr from 'react-flatpickr'
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
@@ -147,7 +147,7 @@ const Staff = () => {
       $('#namapengguna').focus()
     }
     else {
-      //simpan
+      //ubah
       let fd = 'token=' + Token.TokenRahasia()
       fd += '&kodestaff=' + kodestaff.trim()
       fd += '&namastaff=' + namastaff.trim()
@@ -336,16 +336,21 @@ const Staff = () => {
 
   const handleOnHover = (result) => {
     // the item hovered
-    console.log(result)
+    // console.log(result)
   }
 
   const handleOnSelect = (item) => {
     // the item selected
-    console.log(item)
+    // console.log(item)
+    $("#namapengguna").val(item.name).change()
+  }
+
+  const hendleOnClear = () => {
+    $("#namapengguna").val(null).change()
   }
 
   const handleOnFocus = () => {
-    console.log('Focused')
+    // console.log('Focused')
   }
 
   $("#btn_ubah").attr('disabled',true)
@@ -356,7 +361,7 @@ const Staff = () => {
     loadPengguna()
   }, [])
 
-  var judul = 'Data Pasien'
+  var judul = 'Data Staff'
 
   return (
     <CRow className="mb-4">
@@ -390,12 +395,12 @@ const Staff = () => {
                   <CCol md={6}>
                     <CForm id="form_input">
                       <div className="form-group mb-3">
-                        <CFormLabel>No Medical Record</CFormLabel>
+                        <CFormLabel>Kode Staff</CFormLabel>
                         <CFormInput
                           type="text"
                           id="kodestaff"
                           name="kodestaff"
-                          maxLength={15}
+                          maxLength={20}
                           autoFocus
                           autoComplete="Off"
                           placeholder="Kode Staff"
@@ -434,6 +439,7 @@ const Staff = () => {
                           onHover={handleOnHover}
                           onSelect={handleOnSelect}
                           onFocus={handleOnFocus}
+                          onClear={hendleOnClear}
                           placeholder='Ketikkan Nama Penggunanya'
                           styling={{
                             height: "34px",
@@ -451,6 +457,15 @@ const Staff = () => {
                             clearIconMargin: "3px 8px 0 0",
                             zIndex: 2,
                           }}
+                        />
+                        <CFormInput
+                          type="text"
+                          id="namapengguna"
+                          name="namapengguna"
+                          maxLength={50}
+                          autoComplete="Off"
+                          placeholder="Nama Pengguna"
+                          hidden
                         />
                       </div>
                       <div className="form-group mb-3">
@@ -535,6 +550,18 @@ const Staff = () => {
                       </CTable>
                     </div>
                   </CCol>
+                  <CCol md={9} className="text-end">
+                    <CButton
+                      id="btn_refresh"
+                      name="btn_refresh"
+                      type="button"
+                      title="Refresh Data ?"
+                      color="cyan"
+                      onClick={() => tampilData()}
+                    >
+                      <FontAwesomeIcon icon={faSync} /> Refresh
+                    </CButton>
+                  </CCol>
                 </CRow>
                 <CRow>
                   <CCol md={12}>
@@ -553,7 +580,6 @@ const Staff = () => {
                             <CTableHeaderCell className="text-center">Nama Pasien</CTableHeaderCell>
                             <CTableHeaderCell className="text-center">Jenis Kelamin</CTableHeaderCell>
                             <CTableHeaderCell className="text-center">Tgl Lahir</CTableHeaderCell>
-                            <CTableHeaderCell className="text-center">Alamat</CTableHeaderCell>
                             <CTableHeaderCell className="text-center">Nomor HP</CTableHeaderCell>
                           </CTableRow>
                         </CTableHead>
@@ -591,7 +617,6 @@ const Staff = () => {
                                   <CTableDataCell>{item.namastaff}</CTableDataCell>
                                   <CTableDataCell>{item.jabatanstaff}</CTableDataCell>
                                   <CTableDataCell>{tgllahirstaff}</CTableDataCell>
-                                  <CTableDataCell>{item.alamat}</CTableDataCell>
                                   <CTableDataCell>{item.namapengguna}</CTableDataCell>
                                 </CTableRow>
                               )

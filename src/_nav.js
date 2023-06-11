@@ -5,7 +5,10 @@ import { cilSpeedometer } from '@coreui/icons'
 import { CNavItem, CNavTitle } from '@coreui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+  faCapsules,
   faUser,
+  faUserInjured,
+  faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 
 var _nav = []
@@ -30,19 +33,19 @@ _nav = [
     component: CNavItem,
     name: 'Staff',
     to: '/staff',
-    icon: <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', marginRight: '15px' }} />,
+    icon: <FontAwesomeIcon icon={faUsers} style={{ marginLeft: '10px', marginRight: '15px' }} />,
   },
   {
     component: CNavItem,
     name: 'Pasien',
     to: '/pasien',
-    icon: <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', marginRight: '15px' }} />,
+    icon: <FontAwesomeIcon icon={faUserInjured} style={{ marginLeft: '10px', marginRight: '15px' }} />,
   },
   {
     component: CNavItem,
     name: 'Berobat',
     to: '/berobat',
-    icon: <FontAwesomeIcon icon={faUser} style={{ marginLeft: '10px', marginRight: '15px' }} />,
+    icon: <FontAwesomeIcon icon={faCapsules} style={{ marginLeft: '10px', marginRight: '15px' }} />,
   },
 ]
 

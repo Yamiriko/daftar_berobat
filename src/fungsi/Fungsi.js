@@ -32,6 +32,9 @@ var linkSkrining = serverGlobal + '/tampil_skrining'
 
 //Staff
 var linkStaff = serverGlobal + '/tampil_staff'
+var linkAddStaff = serverGlobal + '/tambah_staff'
+var linkEditStaff = serverGlobal + '/ubah_staff'
+var linkDelStaff = serverGlobal + '/hapus_staff'
 
 function loading_swal() {
   let span = document.createElement('span')
@@ -536,6 +539,9 @@ module.exports = {
   linkDelPengguna: linkDelPengguna,
   linkSkrining: linkSkrining,
   linkStaff: linkStaff,
+  linkAddStaff: linkAddStaff,
+  linkEditStaff: linkEditStaff,
+  linkDelStaff: linkDelStaff,
   loadingSwal: function () {
     return loading_swal()
   },

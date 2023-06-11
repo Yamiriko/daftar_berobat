@@ -12,7 +12,8 @@ import {
 } from '@coreui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  faUser,
+  faCapsules,
+  faUser, faUserInjured, faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import Fungsi from 'src/fungsi/Fungsi'
 
@@ -24,16 +25,16 @@ const Dashboard = () => {
           <FontAwesomeIcon icon={faUser} /> Pengguna
         </CButton>
 
-        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/staff')}>
-          <FontAwesomeIcon icon={faUser} /> Staff
+        <CButton className='btn btn-cyan' variant="outline" onClick={() => Fungsi.BukaLink('/#/staff')}>
+          <FontAwesomeIcon icon={faUsers} /> Staff
         </CButton>
 
-        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/pasien')}>
-          <FontAwesomeIcon icon={faUser} /> Pasien
+        <CButton className='btn btn-green' variant="outline" onClick={() => Fungsi.BukaLink('/#/pasien')}>
+          <FontAwesomeIcon icon={faUserInjured} /> Pasien
         </CButton>
 
-        <CButton className='btn btn-blue' variant="outline" onClick={() => Fungsi.BukaLink('/#/berobat')}>
-          <FontAwesomeIcon icon={faUser} /> Berobat
+        <CButton className='btn btn-orange' variant="outline" onClick={() => Fungsi.BukaLink('/#/berobat')}>
+          <FontAwesomeIcon icon={faCapsules} /> Berobat
         </CButton>
       </>
     )

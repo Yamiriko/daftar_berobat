@@ -13,6 +13,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCapsules,
+  faStethoscope,
   faUser, faUserInjured, faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import Fungsi from 'src/fungsi/Fungsi'
@@ -35,6 +36,10 @@ const Dashboard = () => {
 
         <CButton className='btn btn-orange' variant="outline" onClick={() => Fungsi.BukaLink('/#/berobat')}>
           <FontAwesomeIcon icon={faCapsules} /> Berobat
+        </CButton>
+
+        <CButton className='btn btn-purple' variant="outline" onClick={() => Fungsi.BukaLink('/#/diagnosa')}>
+          <FontAwesomeIcon icon={faStethoscope} /> Diagnosa Dokter
         </CButton>
       </>
     )

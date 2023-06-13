@@ -33,6 +33,12 @@ var linkDelPengguna = serverGlobal + '/hapus_pengguna'
 //Skrinning
 var linkSkrining = serverGlobal + '/tampil_skrining'
 
+//Diagnosa
+var linkDiagnosa = serverGlobal + '/tampil_diagnosa'
+var linkAddDiagnosa = serverGlobal + '/tambah_diagnosa'
+var linkEditDiagnosa = serverGlobal + '/ubah_diagnosa'
+var linkDelDiagnosa = serverGlobal + '/hapus_diagnosa'
+
 //Staff
 var linkStaff = serverGlobal + '/tampil_staff'
 var linkAddStaff = serverGlobal + '/tambah_staff'
@@ -544,6 +550,10 @@ module.exports = {
   linkEditPengguna: linkEditPengguna,
   linkDelPengguna: linkDelPengguna,
   linkSkrining: linkSkrining,
+  linkDiagnosa: linkDiagnosa,
+  linkAddDiagnosa: linkAddDiagnosa,
+  linkEditDiagnosa: linkEditDiagnosa,
+  linkDelDiagnosa: linkDelDiagnosa,
   linkStaff: linkStaff,
   linkAddStaff: linkAddStaff,
   linkEditStaff: linkEditStaff,

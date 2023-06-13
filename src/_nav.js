@@ -6,6 +6,7 @@ import { CNavItem, CNavTitle } from '@coreui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCapsules,
+  faStethoscope,
   faUser,
   faUserInjured,
   faUsers,
@@ -46,6 +47,12 @@ _nav = [
     name: 'Berobat',
     to: '/berobat',
     icon: <FontAwesomeIcon icon={faCapsules} style={{ marginLeft: '10px', marginRight: '15px' }} />,
+  },
+  {
+    component: CNavItem,
+    name: 'Diagnosa Dokter',
+    to: '/diagnosa',
+    icon: <FontAwesomeIcon icon={faStethoscope} style={{ marginLeft: '10px', marginRight: '15px' }} />,
   },
 ]
 
